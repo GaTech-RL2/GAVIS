@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GAVIS: Uncertainty-driven 3DGS Active Mapping via Anisotropic Visibility Field</title>
+  <style>
+    :root {
+      --primary: #1a3a5c;
+      --accent: #2980b9;
+      --bg: #fdfdfd;
+      --text: #333;
+      --section-bg: #f7f9fb;
+      --max-w: 960px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+
+    /* ---- Header / Hero ---- */
+    .hero {
+      background: linear-gradient(135deg, #1a3a5c 0%, #2c5f8a 100%);
+      color: #fff;
+      padding: 60px 20px 50px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      max-width: var(--max-w);
+      margin: 0 auto 8px;
+    }
+    .hero .venue {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #ffd54f;
+      margin-bottom: 20px;
+    }
+    .authors {
+      font-size: 1.05rem;
+      max-width: var(--max-w);
+      margin: 0 auto 6px;
+    }
+    .authors a { color: #bee3f8; text-decoration: none; }
+    .authors a:hover { text-decoration: underline; }
+    .equal { font-size: 0.85rem; color: #b0c4de; }
+    .affiliation {
+      font-size: 0.95rem;
+      color: #cdd9e5;
+      margin-bottom: 24px;
+    }
+    .links {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .links a:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .btn-paper { background: #fff; color: var(--primary); }
+    .btn-code  { background: #24292e; color: #fff; }
+    .btn-arxiv { background: #b31b1b; color: #fff; }
+
+    /* ---- Sections ---- */
+    section {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 48px 20px 32px;
+    }
+    section h2 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    /* ---- Teaser ---- */
+    .teaser-section {
+      background: var(--section-bg);
+      padding: 40px 20px;
+    }
+    .teaser-section .inner {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      text-align: center;
+    }
+    .teaser-section img {
+      width: 100%;
+      max-width: 820px;
+      border-radius: 6px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.1);
+    }
+    .teaser-section .caption {
+      margin-top: 14px;
+      font-size: 0.92rem;
+      color: #555;
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ---- Abstract ---- */
+    .abstract p {
+      text-align: justify;
+      font-size: 1.02rem;
+    }
+
+    /* ---- Figures ---- */
+    .fig-block {
+      margin: 36px 0;
+      text-align: center;
+    }
+    .fig-block img {
+      width: 100%;
+      max-width: 900px;
+      border-radius: 4px;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+    }
+    .fig-block .caption {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #555;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .fig-block .caption strong { color: var(--text); }
+
+    /* ---- BibTeX ---- */
+    .bibtex-box {
+      background: #f1f5f9;
+      border: 1px solid #dde4ec;
+      border-radius: 6px;
+      padding: 16px 20px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      white-space: pre;
+      position: relative;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 4px 12px;
+      font-size: 0.8rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .copy-btn:hover { background: #1f6da3; }
+
+    /* ---- Footer ---- */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 0.85rem;
+      color: #888;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 1.4rem; }
+      section { padding: 32px 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ======== HERO ======== -->
+<header class="hero">
+  <h1>Uncertainty-driven 3D Gaussian Splatting Active Mapping via Anisotropic Visibility Field</h1>
+  <div class="venue">CVPR 2026</div>
+  <div class="authors">
+    <a href="mailto:xsj@gatech.edu">Shangjie Xue</a><sup>*</sup>,
+    <a href="mailto:jesse.dill@gatech.edu">Jesse Dill</a><sup>*</sup>,
+    <a href="mailto:dhruv.ahuja@gatech.edu">Dhruv Ahuja</a><sup>*</sup>,
+    <a href="mailto:frank.dellaert@gatech.edu">Frank Dellaert</a>,
+    <a href="mailto:panagiotis.tsiotras@gatech.edu">Panagiotis Tsiotras</a>,
+    <a href="mailto:danfei.xu@gatech.edu">Danfei Xu</a>
+  </div>
+  <div class="equal"><sup>*</sup> Equal contribution</div>
+  <div class="affiliation">Georgia Institute of Technology</div>
+  <div class="links">
+    <a class="btn-paper" href="#">Paper</a>
+    <a class="btn-arxiv" href="#">arXiv</a>
+    <a class="btn-code" href="#">Code</a>
+  </div>
+</header>
+
+<!-- ======== TEASER ======== -->
+<div class="teaser-section">
+  <div class="inner">
+    <img src="figs/teaser.png" alt="GAVIS teaser: visible vs invisible regions and uncertainty map">
+    <p class="caption">
+      GAVIS identifies regions <b>invisible</b> to training views and produces accurate uncertainty maps in real time,
+      enabling effective active mapping for 3D Gaussian Splatting.
+    </p>
+  </div>
+</div>
+
+<!-- ======== ABSTRACT ======== -->
+<section class="abstract">
+  <h2>Abstract</h2>
+  <p>
+    We present <b>Gaussian Splatting Anisotropic Visibility Field (GAVIS)</b>, a novel framework for uncertainty quantification and active mapping in 3DGS.
+    Our key insight is that regions unseen from the training views yield unreliable predictions from the 3DGS.
+    To address this, we introduce a principled and efficient method for quantifying the visibility field in 3DGS,
+    defined as the anisotropic visibility of each particle with respect to the training views, and represented using spherical harmonics.
+    The resulting visibility field is integrated into a Bayesian Network&ndash;based uncertainty-aware 3DGS rasterization module,
+    enabling real-time (200 FPS) uncertainty quantification for synthesized views.
+    Active mapping is further performed within a maximum information gain framework building on this formulation.
+    Extensive experiments across diverse environments demonstrate that GAVIS consistently and significantly outperforms
+    prior approaches in both accuracy and efficiency.
+    Moreover, beyond standalone use, our method can be applied post-hoc to improve the performance of existing approaches.
+  </p>
+</section>
+
+<!-- ======== PIPELINE ======== -->
+<section>
+  <h2>Method Overview</h2>
+  <div class="fig-block">
+    <img src="figs/pipeline.png" alt="GAVIS pipeline">
+    <p class="caption">
+      <strong>Pipeline.</strong>
+      Given observed views, GAVIS reconstructs a 3DGS scene and constructs a per-particle anisotropic visibility field
+      represented with spherical harmonics. The visibility field is integrated into uncertainty-aware rasterization,
+      enabling real-time uncertainty quantification over candidate views for next-best-view selection.
+    </p>
+  </div>
+</section>
+
+<!-- ======== RESULTS ======== -->
+<section>
+  <h2>Results</h2>
+
+  <div class="fig-block">
+    <img src="figs/en_room_largest.png" alt="Uncertainty quantification on indoor scenes">
+    <p class="caption">
+      <strong>Uncertainty quantification on indoor scenes.</strong>
+      Compared to FisherRF, VIMC, and NVF, GAVIS produces uncertainty maps
+      that closely match the ground-truth visibility, clearly distinguishing observed from unobserved regions.
+    </p>
+  </div>
+
+  <div class="fig-block">
+    <img src="figs/am_best_room.png" alt="Active mapping results on indoor scenes">
+    <p class="caption">
+      <strong>Active mapping on indoor scenes (Gibson &amp; HM3D).</strong>
+      Top-down views of reconstructed maps after active exploration.
+      GAVIS achieves substantially more complete scene coverage than baseline methods.
+    </p>
+  </div>
+
+  <div class="fig-block">
+    <img src="figs/am_best_blender.png" alt="Active mapping results on NeRF Synthetic">
+    <p class="caption">
+      <strong>Active mapping on NeRF Synthetic.</strong>
+      Qualitative comparison of reconstruction quality after active view selection.
+      GAVIS recovers finer details with fewer artifacts compared to NVF and VIMC.
+    </p>
+  </div>
+
+  <div class="fig-block">
+    <img src="figs/ablation_strip_final.png" alt="Ablation study">
+    <p class="caption">
+      <strong>Ablation study.</strong>
+      Removing either the anisotropic formulation (Isotropic) or density control (w/o DC)
+      degrades uncertainty estimation quality, validating the importance of both components.
+    </p>
+  </div>
+</section>
+
+<!-- ======== BIBTEX ======== -->
+<section>
+  <h2>Citation</h2>
+  <div class="bibtex-box" id="bibtex">
+    <button class="copy-btn" onclick="navigator.clipboard.writeText(document.getElementById('bibtex-text').textContent)">Copy</button>
+<span id="bibtex-text">@inproceedings{xue2026gavis,
+  title     = {Uncertainty-driven 3D Gaussian Splatting Active Mapping
+               via Anisotropic Visibility Field},
+  author    = {Xue, Shangjie and Dill, Jesse and Ahuja, Dhruv
+               and Dellaert, Frank and Tsiotras, Panagiotis and Xu, Danfei},
+  booktitle = {IEEE/CVF Conference on Computer Vision and
+               Pattern Recognition (CVPR)},
+  year      = {2026}
+}</span></div>
+</section>
+
+<footer>
+  GAVIS &mdash; Georgia Institute of Technology, 2026
+</footer>
+
+</body>
+</html>
