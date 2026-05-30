@@ -188,7 +188,7 @@ body {
     height: 2px;
     bottom: -2px;
     left: 0;
-    background: var(--gradient-accent);
+    background: var(--gradient-fig-pink);
     transition: var(--transition);
 }
 
@@ -326,8 +326,8 @@ body {
   transform: translateX(-50%);
   width: 60px;
   height: 3px;
-  background: var(--gradient-accent);
   border-radius: 2px;
+  /* background set in GAVIS palette block below */
 }
 
 /* Content Improvements */
@@ -737,16 +737,341 @@ a:focus {
   .more-works-container {
     display: none;
   }
-  
+
   .hero, .section {
     animation: none;
   }
-  
+
   .button {
     background: transparent !important;
     color: var(--text-primary) !important;
     box-shadow: none !important;
   }
+}
+
+
+/* ============================================================
+   GAVIS — figure-consistent palette & content components
+   Accent colors are sampled from the paper figures
+   (cyan #56C7D9 and pink #E67C9A in formulation/GMM, purple
+   #7030A0 / teal #1E998C in the pipeline) and bridged to the
+   page's existing blue (#2563eb) for a cohesive look.
+   ============================================================ */
+:root {
+  --fig-cyan:         #56C7D9;
+  --fig-cyan-deep:    #1f8fa3;
+  --fig-pink:         #E67C9A;
+  --fig-pink-deep:    #d4557c;  /* ~20% darkened variant of fig-pink, not in SVGs — for gradients */
+  --fig-slate:        #4B5563;
+  --fig-purple:       #7030A0;
+  --fig-purple-light: #8e5bc4;  /* lighter perceptual shade, for gradient starts */
+  --fig-green:        #1E998C;
+  --cvpr-badge-color: #d62728;
+  --gradient-fig:        linear-gradient(135deg, var(--fig-cyan) 0%, var(--primary-color) 100%);
+  --gradient-fig-pink:   linear-gradient(135deg, var(--fig-cyan) 0%, var(--fig-pink) 100%);
+  --gradient-fig-warm:   linear-gradient(135deg, var(--fig-pink) 0%, var(--fig-pink-deep) 100%);
+  --gradient-fig-purple: linear-gradient(135deg, var(--fig-purple-light) 0%, var(--fig-purple) 100%);
+  --gradient-fig-green:  linear-gradient(135deg, #4db8a8 0%, var(--fig-green) 100%);
+}
+
+/* Tie the section-title underline to the figure palette */
+.title.is-3::after { background: var(--gradient-fig-pink); }
+
+/* ---- TL;DR callout ---- */
+.tldr-section .hero-body { padding-top: 2.5rem; padding-bottom: 0.5rem; }
+.tldr {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  gap: 1.1rem;
+  align-items: center;
+  background: var(--background-primary);
+  border: 1px solid var(--border-color);
+  border-left: 5px solid var(--fig-cyan);
+  border-radius: var(--border-radius);
+  padding: 1.2rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.tldr-badge {
+  flex: 0 0 auto;
+  font-weight: 800;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+  background: var(--gradient-fig);
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+}
+.tldr p { margin: 0; color: var(--text-primary); font-size: 1.08rem; line-height: 1.6; }
+.tldr p b { color: var(--fig-cyan-deep); }
+
+/* ---- Insights ---- */
+.insight-card {
+  height: 100%;
+  background: var(--background-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 1.75rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+.insight-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--gradient-fig);
+}
+.insight-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.insight-number {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px;
+  border-radius: 12px;
+  font-weight: 800; font-size: 1.3rem; color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+  background: var(--gradient-fig);
+  margin-bottom: 1.1rem;
+  box-shadow: var(--shadow-sm);
+}
+.insight-card p { color: var(--text-secondary); font-size: 1.05rem; line-height: 1.65; margin: 0; }
+.insight-card p b, .insight-card strong { color: var(--text-primary); font-weight: 700; }
+
+.insight-card.accent-pink::before,
+.insight-card.accent-pink .insight-number { background: var(--gradient-fig-warm); }
+.insight-card.accent-purple::before,
+.insight-card.accent-purple .insight-number { background: var(--gradient-fig-purple); }
+
+/* ---- Contributions ---- */
+.contrib-card {
+  height: 100%;
+  display: flex; gap: 1rem; align-items: flex-start;
+  background: var(--background-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  text-align: left;
+}
+.contrib-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.contrib-icon {
+  flex: 0 0 auto;
+  width: 48px; height: 48px; border-radius: 12px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.25rem; color: #fff;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+  background: var(--gradient-fig);
+}
+.contrib-card.accent-pink .contrib-icon { background: var(--gradient-fig-warm); }
+.contrib-card.accent-purple .contrib-icon { background: var(--gradient-fig-purple); }
+.contrib-card p { margin: 0; color: var(--text-secondary); line-height: 1.55; font-size: 1.02rem; }
+.contrib-card p b { color: var(--text-primary); }
+
+/* ---- CVPR badge ---- */
+.cvpr-badge { color: var(--cvpr-badge-color); font-weight: 700; }
+
+/* ---- Method blocks ---- */
+.method-block { margin-bottom: 3rem; }
+.method-block:last-child { margin-bottom: 0; }
+.method-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  padding-left: 0.85rem;
+  border-left: 4px solid var(--fig-cyan);
+}
+.method-block > p {
+  color: var(--text-secondary);
+  font-size: 1.08rem;
+  line-height: 1.75;
+}
+.method-block a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
+.method-block a:hover { color: var(--primary-hover); text-decoration: underline; }
+.method-title.centered {
+  border-left: none;
+  padding-left: 0;
+  text-align: center;
+  margin-top: 3rem;
+}
+/* Figures sit directly on the pure-white page (no boxed frame) so their
+   white/transparent canvas blends with the background — no color jump. */
+.method-figure {
+  margin: 1.5rem auto 0;
+  text-align: center;
+}
+.method-figure img { width: 100%; height: auto; display: block; margin: 0 auto; }
+.method-figure.is-narrow img { max-width: 620px; }
+
+/* ---- Result figures / captions ---- */
+.result-figure { text-align: center; margin-top: 1rem; }
+.result-figure img { width: 100%; height: auto; }
+.radar-figure { max-width: 470px; margin: 1rem auto 0; }
+.radar-figure img { width: 100%; height: auto; }
+.fig-caption {
+  margin: 0.95rem auto 0;
+  max-width: 820px;
+  font-size: 0.96rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  text-align: center;
+}
+.fig-caption b { color: var(--text-primary); }
+
+/* ---- Autoplay video — no frame, no shadow: sits flush on white background ---- */
+.video-wrap {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+}
+.video-wrap video { display: block; width: 100%; height: auto; }
+
+/* ---- Focus-visible states for interactive buttons ---- */
+.scroll-to-top:focus-visible,
+.more-works-btn:focus-visible,
+.copy-bibtex-btn:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* ---- Runtime stat cards ---- */
+.stat-card {
+  height: 100%;
+  text-align: center;
+  background: var(--background-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 1.6rem 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+.stat-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.stat-number {
+  font-family: 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--fig-cyan-deep); /* solid fallback: #1f8fa3, ~4.5:1 on white */
+  background: var(--gradient-fig);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.stat-card.warm .stat-number {
+  color: var(--fig-pink-deep); /* solid fallback: #d4557c, ~4.73:1 on white */
+  background: var(--gradient-fig-warm);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.stat-label { margin-top: 0.65rem; color: var(--text-secondary); font-size: 0.96rem; line-height: 1.45; }
+
+/* 2×2 grid for stat cards on tablet */
+@media screen and (max-width: 1024px) {
+  .stat-grid > .column { flex-basis: 50% !important; }
+}
+
+@media screen and (max-width: 768px) {
+  .tldr { flex-direction: column; align-items: flex-start; text-align: left; }
+  .stat-number { font-size: 1.8rem; }
+  .method-title { font-size: 1.2rem; }
+  /* Constrain wide-aspect SVG figures on mobile */
+  .method-figure { max-width: 85vw; margin-left: auto; margin-right: auto; }
+}
+
+
+/* ============================================================
+   Humanego-style numbered list (Insights & Contributions)
+   ============================================================ */
+.section-title-left {
+  text-align: left !important;
+}
+.section-title-left::after {
+  left: 0 !important;
+  transform: none !important;
+}
+.section-diamond {
+  color: var(--fig-cyan-deep);
+}
+.humanego-list {
+  margin-top: 0.25rem;
+}
+.humanego-row {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--border-color);
+}
+.humanego-row:last-child {
+  border-bottom: 1px solid var(--border-color);
+}
+.humanego-num {
+  font-size: 2.8rem;
+  font-weight: 800;
+  line-height: 1;
+  min-width: 2.5rem;
+  flex-shrink: 0;
+  color: var(--fig-cyan-deep);
+}
+.humanego-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.humanego-text strong {
+  color: var(--fig-cyan-deep);
+  font-weight: 700;
+}
+@media screen and (max-width: 600px) {
+  .humanego-row { flex-direction: column; gap: 0.6rem; align-items: flex-start; }
+  .humanego-num { font-size: 2rem; }
+}
+
+
+/* ============================================================
+   Left page navigation sidebar
+   ============================================================ */
+.page-nav {
+  position: fixed;
+  left: 1.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+.page-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.page-nav-link {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-left: 3px solid var(--border-color);
+  transition: color 0.2s, border-color 0.2s;
+  line-height: 1.5;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
+}
+.page-nav-link:hover {
+  color: var(--primary-color);
+  border-left-color: var(--primary-color);
+}
+.page-nav-link.active {
+  color: var(--fig-cyan-deep);
+  border-left-color: var(--fig-cyan-deep);
+  font-weight: 700;
+}
+/* Only show when there is enough margin beside the content column */
+@media screen and (max-width: 1400px) {
+  .page-nav { display: none; }
 }
 
 

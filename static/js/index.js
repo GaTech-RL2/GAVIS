@@ -46,7 +46,7 @@ function copyBibTeX() {
         navigator.clipboard.writeText(bibtexElement.textContent).then(function() {
             // Success feedback
             button.classList.add('copied');
-            copyText.textContent = 'Cop';
+            copyText.textContent = 'Copied!';
             
             setTimeout(function() {
                 button.classList.remove('copied');
@@ -63,7 +63,7 @@ function copyBibTeX() {
             document.body.removeChild(textArea);
             
             button.classList.add('copied');
-            copyText.textContent = 'Cop';
+            copyText.textContent = 'Copied!';
             setTimeout(function() {
                 button.classList.remove('copied');
                 copyText.textContent = 'Copy';
@@ -90,28 +90,43 @@ window.addEventListener('scroll', function() {
     }
 });
 
+// Left page navigation: highlight active section on scroll
+function setupPageNav() {
+  const links = document.querySelectorAll('.page-nav-link');
+  if (links.length === 0) return;
+  const sections = Array.from(links)
+    .map(l => document.getElementById(l.getAttribute('href').slice(1)))
+    .filter(Boolean);
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector('.page-nav-link[href="#' + entry.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+  sections.forEach(s => observer.observe(s));
+}
+
 // Video carousel autoplay when in view
 function setupVideoCarouselAutoplay() {
-    const carouselVideos = document.querySelectorAll('.results-carousel video');
-    
+    const carouselVideos = document.querySelectorAll('.results-carousel video, video[data-autoplay]');
+
     if (carouselVideos.length === 0) return;
     
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             const video = entry.target;
             if (entry.isIntersecting) {
-                // Video is in view, play it
                 video.play().catch(e => {
-                    // Autoplay failed, probably due to browser policy
                     console.log('Autoplay prevented:', e);
                 });
-            } else {
-                // Video is out of view, pause it
-                video.pause();
             }
+            // Do NOT pause on scroll-out — native loop attribute handles replay.
         });
     }, {
-        threshold: 0.5 // Trigger when 50% of the video is visible
+        threshold: 0.3
     });
     
     carouselVideos.forEach(video => {
@@ -138,5 +153,6 @@ $(document).ready(function() {
     
     // Setup video autoplay for carousel
     setupVideoCarouselAutoplay();
+    setupPageNav();
 
 })

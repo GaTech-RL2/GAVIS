@@ -71,7 +71,7 @@
 
   <!-- Favicon and App Icons -->
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
-  <link rel="apple-touch-icon" href="static/images/favicon.ico">
+  <link rel="apple-touch-icon" href="static/images/logo_square.png">
 
   <!-- Critical CSS - Load synchronously -->
   <link rel="stylesheet" href="static/css/bulma.min.css">
@@ -146,7 +146,7 @@
         </button>
       </div>
       <div class="works-list">
-        <a href="https://sites.google.com/view/nvf-cvpr24/" class="work-item" target="_blank">
+        <a href="https://sites.google.com/view/nvf-cvpr24/" class="work-item" target="_blank" rel="noopener noreferrer">
           <div class="work-info">
             <h5>NVF: Neural Visibility Field for Uncertainty-Driven Active Mapping</h5>
             <p>Uncertainty quantification and active mapping for NeRF via a learned visibility field.</p>
@@ -158,6 +158,19 @@
     </div>
   </div>
 
+  <!-- Left section navigation -->
+  <nav class="page-nav" aria-label="Page sections">
+    <ul>
+      <li><a href="#tldr" class="page-nav-link">TL;DR</a></li>
+      <li><a href="#insights" class="page-nav-link">Insights</a></li>
+      <li><a href="#abstract" class="page-nav-link">Abstract</a></li>
+      <li><a href="#contributions" class="page-nav-link">Contributions</a></li>
+      <li><a href="#method" class="page-nav-link">Method</a></li>
+      <li><a href="#results" class="page-nav-link">Results</a></li>
+      <li><a href="#BibTeX" class="page-nav-link">BibTeX</a></li>
+    </ul>
+  </nav>
+
   <main id="main-content">
   <section class="hero">
     <div class="hero-body">
@@ -167,28 +180,28 @@
             <h1 class="title is-1 publication-title">GAVIS: Uncertainty-driven 3D Gaussian Splatting Active Mapping via Anisotropic Visibility Field</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="https://xsj01.github.io/" target="_blank">Shangjie Xue</a><sup>*</sup>,</span>
+                <a href="https://xsj01.github.io/" target="_blank" rel="noopener noreferrer">Shangjie Xue</a><sup>*</sup>,</span>
               <span class="author-block">
-                <a href="https://www.linkedin.com/in/jesse-n-dill/" target="_blank">Jesse Dill</a><sup>*</sup>,</span>
+                <a href="https://www.linkedin.com/in/jesse-n-dill/" target="_blank" rel="noopener noreferrer">Jesse Dill</a><sup>*</sup>,</span>
               <span class="author-block">
-                <a href="https://www.linkedin.com/in/dhruvahuja8/" target="_blank">Dhruv Ahuja</a><sup>*</sup>,</span>
+                <a href="https://www.linkedin.com/in/dhruvahuja8/" target="_blank" rel="noopener noreferrer">Dhruv Ahuja</a><sup>*</sup>,</span>
               <span class="author-block">
-                <a href="https://dellaert.github.io/" target="_blank">Frank Dellaert</a>,</span>
+                <a href="https://dellaert.github.io/" target="_blank" rel="noopener noreferrer">Frank Dellaert</a>,</span>
               <span class="author-block">
-                <a href="https://ae.gatech.edu/directory/person/panagiotis-tsiotras" target="_blank">Panagiotis Tsiotras</a>,</span>
+                <a href="https://ae.gatech.edu/directory/person/panagiotis-tsiotras" target="_blank" rel="noopener noreferrer">Panagiotis Tsiotras</a>,</span>
               <span class="author-block">
-                <a href="https://faculty.cc.gatech.edu/~danfei/" target="_blank">Danfei Xu</a></span>
+                <a href="https://faculty.cc.gatech.edu/~danfei/" target="_blank" rel="noopener noreferrer">Danfei Xu</a></span>
             </div>
 
             <div class="is-size-5 publication-authors">
-              <span class="author-block">Georgia Institute of Technology<br><span style="color:#d62828; font-weight:700;">CVPR 2026</span></span>
+              <span class="author-block">Georgia Institute of Technology<br><span class="cvpr-badge">CVPR 2026</span></span>
               <span class="eql-cntrb"><small><br><sup>*</sup>Indicates Equal Contribution</small></span>
             </div>
 
-            <div class="column has-text-centered">
+            <div class="has-text-centered">
               <div class="publication-links">
                 <span class="link-block">
-                  <a href="files/main.pdf" target="_blank"
+                  <a href="files/main.pdf" target="_blank" rel="noopener noreferrer"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -198,7 +211,7 @@
                 </span>
 
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/2605.30342" target="_blank"
+                  <a href="https://arxiv.org/abs/2605.30342" target="_blank" rel="noopener noreferrer"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -208,7 +221,7 @@
                 </span>
 
                 <span class="link-block">
-                  <a href="#" target="_blank"
+                  <a href="https://github.com/GaTech-RL2/gavis" target="_blank" rel="noopener noreferrer"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -225,42 +238,213 @@
   </section>
 
 
+  <!-- TL;DR -->
+  <section class="hero tldr-section" id="tldr">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <div class="tldr">
+          <span class="tldr-badge">TL;DR</span>
+          <p><b>GAVIS</b> is a principled framework for quantifying uncertainty in 3D Gaussian Splatting, enabling accurate and efficient active perception.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End TL;DR -->
+
+
   <!-- Teaser figure -->
   <section class="hero teaser">
     <div class="container is-max-desktop">
       <div class="hero-body">
-        <img src="figs/website.png" alt="GAVIS teaser: anisotropic visibility field and uncertainty map" style="width: 100%; height: auto;">
+        <img src="figs/teaser.svg" alt="GAVIS teaser: regions unseen by the training views are flagged as high-uncertainty, even where the 3DGS reconstruction looks plausible." style="width: 60%; height: auto; display: block; margin: 0 auto;">
       </div>
     </div>
   </section>
   <!-- End teaser figure -->
 
 
-  <!-- Paper abstract -->
-  <section class="section hero is-light">
+  <!-- Insights -->
+  <section class="section" id="insights">
     <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              We present <b>Gaussian Splatting Anisotropic Visibility Field (GAVIS)</b>, a novel framework for uncertainty quantification and active mapping in 3DGS.
-              Our key insight is that regions unseen from the training views yield unreliable predictions from the 3DGS.
-              To address this, we introduce a principled and efficient method for quantifying the visibility field in 3DGS,
-              defined as the anisotropic visibility of each particle with respect to the training views, and represented using spherical harmonics.
-              The resulting visibility field is integrated into a Bayesian Network&ndash;based uncertainty-aware 3DGS rasterization module,
-              enabling real-time (200 FPS) uncertainty quantification for synthesized views.
-              Active mapping is further performed within a maximum information gain framework building on this formulation.
-              Extensive experiments across diverse environments demonstrate that GAVIS consistently and significantly outperforms
-              prior approaches in both accuracy and efficiency.
-              Moreover, beyond standalone use, our method can be applied post-hoc to improve the performance of existing approaches.
-            </p>
-          </div>
+      <h2 class="title is-3 section-title-left"><span class="section-diamond">✦</span> Insights</h2>
+      <div class="humanego-list">
+        <div class="humanego-row">
+          <div class="humanego-num">1</div>
+          <div class="humanego-text">The robot needs to <strong>know what it does not know</strong> about the scene, in order to explore effectively.</div>
+        </div>
+        <div class="humanego-row">
+          <div class="humanego-num">2</div>
+          <div class="humanego-text"><strong>Seeing is believing</strong>: regions unseen by the training views yield unreliable 3DGS predictions.</div>
+        </div>
+        <div class="humanego-row">
+          <div class="humanego-num">3</div>
+          <div class="humanego-text">Reliable predictions require observations from <strong>multiple diverse training viewpoints</strong>.</div>
         </div>
       </div>
     </div>
   </section>
+  <!-- End Insights -->
+
+
+  <!-- Paper abstract -->
+  <section class="section" id="abstract">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title-left"><span class="section-diamond">✦</span> Abstract</h2>
+      <div class="content has-text-justified">
+        <p>
+          We present <b>Gaussian Splatting Anisotropic Visibility Field (GAVIS)</b>, a novel framework for uncertainty quantification and active mapping in 3DGS.
+          Our key insight is that regions unseen from the training views yield unreliable predictions from the 3DGS.
+          To address this, we introduce a principled and efficient method for quantifying the visibility field in 3DGS,
+          defined as the anisotropic visibility of each particle with respect to the training views, and represented using spherical harmonics.
+          The resulting visibility field is integrated into a Bayesian Network&ndash;based uncertainty-aware 3DGS rasterization module,
+          enabling real-time (200 FPS) uncertainty quantification for synthesized views.
+          Active mapping is further performed within a maximum information gain framework building on this formulation.
+          Extensive experiments across diverse environments demonstrate that GAVIS consistently and significantly outperforms
+          prior approaches in both accuracy and efficiency.
+          Moreover, beyond standalone use, our method can be applied post-hoc to improve the performance of existing approaches.
+        </p>
+      </div>
+    </div>
+  </section>
   <!-- End paper abstract -->
+
+
+  <!-- Contributions -->
+  <section class="section" id="contributions">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title-left"><span class="section-diamond">✦</span> Contributions</h2>
+      <div class="humanego-list">
+        <div class="humanego-row">
+          <div class="humanego-num">1</div>
+          <div class="humanego-text">A <strong>principled framework</strong> for quantifying uncertainty in 3D Gaussian Splatting for active mapping.</div>
+        </div>
+        <div class="humanego-row">
+          <div class="humanego-num">2</div>
+          <div class="humanego-text"><strong>Anisotropic Visibility Fields</strong> that model how much we can trust 3DGS predictions as a function of viewing direction.</div>
+        </div>
+        <div class="humanego-row">
+          <div class="humanego-num">3</div>
+          <div class="humanego-text">An accurate and efficient algorithm for constructing and querying the field, enabling <strong>real-time uncertainty quantification at 200 FPS</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Contributions -->
+
+
+  <!-- Method -->
+  <section class="section" id="method">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title-left"><span class="section-diamond">✦</span> Method</h2>
+
+      <div class="method-block">
+        <h3 class="method-title">Formulation</h3>
+        <p>
+          Anisotropic Visibility Fields model <b>direction-dependent visibility</b>: whether a region is
+          supported by the training views along a query direction &mdash; or equivalently, how much we
+          can trust the 3DGS prediction as a function of viewing direction.
+        </p>
+        <div class="method-figure">
+          <img src="figs/formulation.svg" alt="Anisotropic Visibility Field formulation: direction-dependent visibility of a 3D region with respect to the training views.">
+        </div>
+      </div>
+
+      <div class="method-block">
+        <h3 class="method-title">Spherical Harmonics Representation</h3>
+        <p>
+          The Anisotropic Visibility Field is represented with <b>spherical harmonics</b>, enabling
+          accurate and efficient construction and querying.
+        </p>
+        <div class="method-figure">
+          <img src="figs/sh.svg" alt="Spherical harmonics representation of the anisotropic visibility field.">
+        </div>
+      </div>
+
+      <div class="method-block">
+        <h3 class="method-title">Uncertainty Quantification via a Bayesian Network</h3>
+        <p>
+          We extend the visibility-modulated, uncertainty-aware volume-rendering formulation from our prior work
+          <a href="https://sites.google.com/view/nvf-cvpr24/" target="_blank" rel="noopener">NVF</a>
+          to 3DGS rasterization, where the synthesized-observation posterior is represented as a
+          <b>Gaussian Mixture Model (GMM)</b>.
+        </p>
+        <div class="method-figure">
+          <img src="figs/gmm.svg" alt="Bayesian-network uncertainty-aware 3DGS rasterizer producing a Gaussian Mixture Model posterior.">
+        </div>
+      </div>
+
+      <div class="method-block">
+        <h3 class="method-title">GAVIS Pipeline</h3>
+        <p>
+          From posed training views we reconstruct a 3DGS scene, construct the Anisotropic Visibility Field, and
+          query it through an uncertainty-aware rasterizer to obtain per-view uncertainty maps that drive
+          <b>next-best-view selection</b>.
+        </p>
+        <div class="method-figure">
+          <img src="figs/pipeline.svg" alt="GAVIS pipeline: 3DGS reconstruction, visibility-field construction, uncertainty-aware rasterization, and next-best-view selection.">
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- End Method -->
+
+
+  <!-- Results -->
+  <section class="section" id="results">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 section-title-left"><span class="section-diamond">✦</span> Results</h2>
+
+      <div class="video-wrap">
+        <video data-autoplay autoplay loop muted playsinline preload="none"
+               poster="figs/teaser.png" aria-label="GAVIS active-mapping rollout video">
+          <source src="static/videos/en_room.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <h3 class="method-title centered">Active Mapping Quantitative Results</h3>
+      <div class="radar-figure">
+        <img src="figs/radar_chart.svg" alt="Radar chart comparing GAVIS against FisherRF, VIMC, and NVF across rendering quality, visibility coverage, uncertainty quality, and runtime.">
+      </div>
+      <p class="fig-caption">Metrics span view synthesis quality (PSNR, SSIM, LPIPS), mesh reconstruction quality (CR: Completion Ratio), and runtime (&mdash; <i>T</i><sub>UP</sub>: visibility-field construction time; UQ: uncertainty quantification speed in FPS). All axes are normalized so that <b>farther from the center is better</b>. </p>
+
+      <h3 class="method-title centered">Runtime</h3>
+      <div class="columns is-variable is-5 stat-grid">
+        <div class="column">
+          <div class="stat-card">
+            <div class="stat-number">&lt;&nbsp;1&nbsp;s</div>
+            <div class="stat-label">Visibility-field construction</div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="stat-card">
+            <div class="stat-number">200&nbsp;FPS</div>
+            <div class="stat-label">Uncertainty quantification</div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="stat-card warm">
+            <div class="stat-number">500&times;</div>
+            <div class="stat-label">Faster construction vs. <a href="https://sites.google.com/view/nvf-cvpr24/" target="_blank" rel="noopener">NVF</a></div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="stat-card warm">
+            <div class="stat-number">30&times;</div>
+            <div class="stat-label">Faster uncertainty quantification vs. <a href="https://sites.google.com/view/nvf-cvpr24/" target="_blank" rel="noopener">NVF</a></div>
+          </div>
+        </div>
+      </div>
+      <p class="fig-caption">
+        GAVIS constructs the visibility field within <b>one second</b> and quantifies uncertainty at <b>200 FPS</b> &mdash;
+        <b>500&times;</b> faster construction and <b>30&times;</b> faster uncertainty quantification than our prior work
+        <a href="https://sites.google.com/view/nvf-cvpr24/" target="_blank" rel="noopener">NVF</a>.
+      </p>
+
+    </div>
+  </section>
+  <!-- End Results -->
 
 
   <!--BibTex citation -->
@@ -281,6 +465,17 @@
   booktitle = {IEEE/CVF Conference on Computer Vision and
                Pattern Recognition (CVPR)},
   year      = {2026}
+}
+
+@inproceedings{xue2024nvf,
+  title     = {Neural Visibility Field for Uncertainty-Driven
+               Active Mapping},
+  author    = {Xue, Shangjie and Dill, Jesse and Mathur, Pranay
+               and Dellaert, Frank and Tsiotras, Panagiotis and Xu, Danfei},
+  booktitle = {IEEE/CVF Conference on Computer Vision and
+               Pattern Recognition (CVPR)},
+  pages     = {18122--18132},
+  year      = {2024}
 }</code></pre>
     </div>
   </section>
@@ -293,7 +488,7 @@
         <div class="column is-8">
           <div class="content">
             <p>
-              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank" rel="noopener noreferrer">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank" rel="noopener noreferrer">Nerfies</a> project page.
             </p>
           </div>
         </div>
